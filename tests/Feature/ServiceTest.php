@@ -9,6 +9,7 @@ use Tests\TestCase;
 
 class ServiceTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      */
@@ -22,11 +23,18 @@ class ServiceTest extends TestCase
             'Authorization' => 'Bearer '.$token,
         ];
         $response = $this->withHeaders($headers)->post('/api/services', [
-            'name' => 'Test',
+            'name' => 'visit',
             'price' => 450,
             'user_id'=>1
         ]);
 
         $response->assertStatus(200);
+    }
+    public function  test_services_view(): void
+    {
+
+//        $this->get('/api/services/')->assertSee('visit');
+        $this->get('/api/services/')->assertStatus(200);
+
     }
 }

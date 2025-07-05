@@ -4,13 +4,16 @@ namespace App\Http\Patterns\Repositories;
 use App\Contracts\ServiceInterface;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceRepository implements ServiceInterface
 {
 
     public function index()
     {
-        // TODO: Implement index() method.
+        $services = Service::all();
+        return response($services, 200);
+
     }
 
     public function create(array $data)
